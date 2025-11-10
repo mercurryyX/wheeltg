@@ -1,141 +1,124 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+<meta charset="UTF-8">
+<title>Колесо удачи</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background: #f2f2f2;
+  }
+
+  #wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  #wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid #333;
+    overflow: hidden;
+    transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .segment {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  #spinBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  /* Стрелка */
+  #arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid red;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="ru"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;title&gt;Колесо удачи&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1">&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-family: Arial, sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>text-align: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-top: 50px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background: #f2f2f2;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>#wheel-container {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>position: relative;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 300px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 300px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin: 0 auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>#wheel {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-radius: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border: 5px solid #333;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>overflow: hidden;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.segment {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>position: absolute;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>top: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>left: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transform-origin: 0 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>clip-path: polygon(0 0, 100% 0, 0 100%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>align-items: flex-start;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>justify-content: flex-start;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding: 5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: bold;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>#spinBtn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-top: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding: 10px 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>#result {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-top: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: bold;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 18px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>/* Стрелка */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>#arrow {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-left: 15px solid transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-right: 15px solid transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-bottom: 30px solid red;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>position: absolute;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>top: -30px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>left: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transform: translateX(-50%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;h1&gt;Колесо удачи&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div id="wheel-container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="arrow"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="wheel"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;button id="spinBtn"&gt;Крутить&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div id="result"&gt;&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- Telegram Web App SDK --&gt;</span></p>
-<p class="p1"><span class="s1">&lt;script src="https://telegram.org/js/telegram-web-app.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
-<p class="p1"><span class="s1">const tg = window.Telegram.WebApp;</span></p>
-<p class="p1"><span class="s1">tg.expand();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">const segments = ["10₽", "20₽", "50₽", "100₽", "Попробуй снова", "200₽"];</span></p>
-<p class="p1"><span class="s1">const wheel = document.getElementById("wheel");</span></p>
-<p class="p1"><span class="s1">const result = document.getElementById("result");</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// создаём сегменты колеса</span></p>
-<p class="p1"><span class="s1">segments.forEach((label, i) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const seg = document.createElement("div");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>seg.className = "segment";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const angle = (360 / segments.length) * i;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>seg.style.transform = `rotate(${angle}deg)`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>seg.style.background = `hsl(${angle}, 80%, 50%)`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>seg.textContent = label;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>wheel.appendChild(seg);</span></p>
-<p class="p1"><span class="s1">});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">document.getElementById("spinBtn").addEventListener("click", () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const spins = Math.floor(Math.random() * 5) + 5; // 5-9 оборотов</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const segmentAngle = 360 / segments.length;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const randIndex = Math.floor(Math.random() * segments.length);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const rotateDeg = spins * 360 + randIndex * segmentAngle + segmentAngle / 2;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>wheel.style.transition = "transform 5s cubic-bezier(0.33, 1, 0.68, 1)";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>wheel.style.transform = `rotate(${rotateDeg}deg)`;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// показываем результат через 5 секунд</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>setTimeout(() =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>result.textContent = `Вы выиграли: ${segments[randIndex]}!`;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// отправляем результат боту (если нужно)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>tg.sendData(JSON.stringify({ prize: segments[randIndex] }));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}, 5000);</span></p>
-<p class="p1"><span class="s1">});</span></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+
+<h1>Колесо удачи</h1>
+<div id="wheel-container">
+  <div id="arrow"></div>
+  <div id="wheel"></div>
+</div>
+<button id="spinBtn">Крутить</button>
+<div id="result"></div>
+
+<!-- Telegram Web App SDK -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+const tg = window.Telegram.WebApp;
+tg.expand();
+
+const segments = ["10₽", "20₽", "50₽", "100₽", "Попробуй снова", "200₽"];
+const wheel = document.getElementById("wheel");
+const result = document.getElementById("result");
+
+// создаём сегменты колеса
+segments.forEach((label, i) => {
+  const seg = document.createElement("div");
+  seg.className = "segment";
+  const angle = (360 / segments.length) * i;
+  seg.style.transform = `rotate(${angle}deg)`;
+  seg.style.background = `hsl(${angle}, 80%, 50%)`;
+  seg.textContent = label;
+  wheel.appendChild(seg);
+});
+
+document.getElementById("spinBtn").addEventListener("click", () => {
+  const spins = Math.floor(Math.random() * 5) + 5; // 5-9 оборотов
+  const segmentAngle = 360 / segments.length;
+  const randIndex = Math.floor(Math.random() * segments.length);
+  const rotateDeg = spins * 360 + randIndex * segmentAngle + segmentAngle / 2;
+
+  wheel.style.transition = "transform 5s cubic-bezier(0.33, 1, 0.68, 1)";
+  wheel.style.transform = `rotate(${rotateDeg}deg)`;
+
+  // показываем результат через 5 секунд
+  setTimeout(() => {
+    result.textContent = `Вы выиграли: ${segments[randIndex]}!`;
+
+    // отправляем результат боту (если нужно)
+    tg.sendData(JSON.stringify({ prize: segments[randIndex] }));
+  }, 5000);
+});
+</script>
+
 </body>
 </html>
